@@ -10,6 +10,9 @@ client = MongoClient(MONGO_URI)
 db = client.get_default_database()
 users = db.users
 
+from scripts.users_seed import seed_users
+seed_users(users)
+
 @app.route("/", methods=["GET"])
 def home():
     if "username" not in session:
