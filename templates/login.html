@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход в систему</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin:0; padding:0; }
+    .container { max-width: 400px; margin: 80px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #333; margin-bottom: 20px; }
+    input[type="text"], input[type="password"] {
+      width: 95%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; background: #f9f9f9; border-radius: 4px;
+    }
+    button {
+      width: 100%; padding: 10px; background-color: #4376acff; color: white;
+      border: none; border-radius: 4px; cursor: pointer;
+    }
+    button:hover { background-color: #2a537eff; }
+    #result { margin-top: 15px; text-align: center; color: #cc0000; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Форма авторизации</h2>
+    <form id="loginForm">
+      <input type="text" name="username" placeholder="Имя пользователя" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+      <button type="submit">Войти</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        username: form.username.value,
+        password: form.password.value
+      };
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      document.getElementById('result').textContent = json.message || "";
+      if (res.ok && json.redirect) {
+        window.location.href = json.redirect;
+      }
+    });
+  </script>
+</body>
+</html>

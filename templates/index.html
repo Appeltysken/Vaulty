@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ваш профиль</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin:0; padding:0; }
+    .container { max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #333; }
+    .field { margin-bottom: 15px; }
+    .field label { display: block; font-weight: bold; color: #555; margin-bottom: 5px; }
+    .field .value { padding: 8px 12px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; color: #333; }
+    .logout { text-align: center; margin-top: 20px; }
+    .logout a { text-decoration: none; color: #007BFF; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ваш профиль, {{ user.username }}</h1>
+    <div class="field">
+      <label>Имя:</label>
+      <div class="value">{{ user.first_name }}</div>
+    </div>
+    <div class="field">
+      <label>Фамилия:</label>
+      <div class="value">{{ user.last_name }}</div>
+    </div>
+    <div class="field">
+      <label>Пол:</label>
+      <div class="value">{{ user.gender }}</div>
+    </div>
+    <div class="field">
+      <label>О себе:</label>
+      <div class="value">{{ user.about }}</div>
+    </div>
+    <div class="logout">
+      <a href="{{ url_for('logout') }}">Выйти</a>
+    </div>
+  </div>
+</body>
+</html>
