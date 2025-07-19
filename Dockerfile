@@ -1,11 +1,10 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine3.22
 
 WORKDIR /app
 
 COPY . /app
 
-RUN pip install flask && \
-    pip install pymongo
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
