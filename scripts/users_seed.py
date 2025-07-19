@@ -2,9 +2,9 @@ def seed_users(users_collection):
     if users_collection.count_documents({"username": "mongo"}) == 0:
         users_collection.insert_one({
             "username": "mongo",
-            "password": "Ivan",
-            "first_name": "SpaceBiker",
-            "last_name": "Johnson",
+            "password": "charlie",
+            "first_name": "Ivan",
+            "last_name": "SpaceBiker",
             "gender": "Мужской",
             "about": '''Сотрудник ООО "Black Mesa".\n
             Информация для себя:
